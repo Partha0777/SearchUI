@@ -6,13 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.curiozing.searchui.databinding.OrderItemLayoutBinding
 import com.curiozing.searchui.model.OrderModel
 
-class OrderListAdapter(var orderList: List<OrderModel>) : RecyclerView.Adapter<OrderListAdapter.ViewHolder>() {
+class OrderListAdapter(var orderList: List<OrderModel>) :
+    RecyclerView.Adapter<OrderListAdapter.ViewHolder>() {
 
 
-    inner class ViewHolder(val binding: OrderItemLayoutBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: OrderItemLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = OrderItemLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            OrderItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
 
     }
