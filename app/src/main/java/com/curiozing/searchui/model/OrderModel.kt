@@ -8,7 +8,7 @@ data class UserModel(
     val email: String
 ) {
     override fun toString(): String {
-        return super.toString()
+        return "$name ($name.gmail.com)"
     }
 }
 
@@ -18,6 +18,6 @@ data class ProductModel(
     val brand: String
 ) {
     override fun toString(): String {
-        return super.toString()
+        return "$name - $brand ($$price)"
     }
 }

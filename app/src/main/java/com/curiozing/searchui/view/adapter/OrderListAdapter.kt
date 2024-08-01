@@ -1,12 +1,13 @@
 package com.curiozing.searchui.view.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.curiozing.searchui.databinding.OrderItemLayoutBinding
 import com.curiozing.searchui.model.OrderModel
 
-class OrderListAdapter(var orderList: List<OrderModel>) :
+class OrderListAdapter(private var orderList: List<OrderModel>) :
     RecyclerView.Adapter<OrderListAdapter.ViewHolder>() {
 
 
@@ -25,6 +26,12 @@ class OrderListAdapter(var orderList: List<OrderModel>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.productDetail.text = orderList[position].productModel.toString()
         holder.binding.userDetail.text = orderList[position].userModel.toString()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun refreshList(list: List<OrderModel>){
+        this.orderList = list
+        notifyDataSetChanged()
     }
 }
 
