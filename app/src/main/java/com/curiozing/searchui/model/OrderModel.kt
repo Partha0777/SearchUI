@@ -8,7 +8,7 @@ data class UserModel(
     val email: String
 ) {
     override fun toString(): String {
-        return "$name ($name.gmail.com)"
+        return "$name ($name@gmail.com)"
     }
 }
 
