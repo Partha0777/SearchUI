@@ -1,5 +1,6 @@
 package com.curiozing.searchui.model
 
+import kotlinx.coroutines.delay
 import kotlin.random.Random
 
 object SearchDataProvider {
@@ -242,5 +243,10 @@ object SearchDataProvider {
             )
             orderList.add(OrderModel(userModel, productModel))
         }
+    }
+
+    suspend fun getOrderList(): List<OrderModel>{
+        delay(2000)
+        return orderList
     }
 }
