@@ -249,4 +249,10 @@ object SearchDataProvider {
         delay(2000)
         return orderList
     }
+
+    fun searchData(query:String): List<OrderModel> {
+       return orderList.filter { e ->
+            e.productModel.toString().contains(query) || e.userModel.toString().contains(query)
+        }
+    }
 }
