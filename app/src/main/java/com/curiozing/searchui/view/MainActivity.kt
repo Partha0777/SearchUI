@@ -33,5 +33,13 @@ class MainActivity : AppCompatActivity() {
         }
         binding.rvOrderList.layoutManager = LinearLayoutManager(this)
         binding.rvOrderList.adapter = orderAdapter
+
+
     }
+
+
+}
+
+fun <T,R> calculate(data:List<T>,func: (T) -> R) : List<R>{
+    return  data.map { e -> func(e) }
 }
