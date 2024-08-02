@@ -245,13 +245,13 @@ object SearchDataProvider {
         }
     }
 
-    suspend fun getOrderList(): List<OrderModel>{
+    suspend fun getOrderList(): List<OrderModel> {
         delay(2000)
         return orderList
     }
 
-    fun searchData(query:String): List<OrderModel> {
-       return orderList.filter { e ->
+    fun searchData(query: String): List<OrderModel> {
+        return orderList.filter { e ->
             e.productModel.toString().contains(query) || e.userModel.toString().contains(query)
         }
     }
