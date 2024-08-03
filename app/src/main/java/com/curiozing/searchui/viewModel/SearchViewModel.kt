@@ -11,18 +11,27 @@ import kotlinx.coroutines.launch
 class SearchViewModel : ViewModel() {
 
     var orderList : MediatorLiveData<List<OrderModel>> = MediatorLiveData()
+    private var searchList = MutableLiveData<List<OrderModel>>()
     private var _orderListData =  MutableLiveData<List<OrderModel>>()
 
     init {
        orderList.addSource(_orderListData){
            orderList.value = it
        }
+
+        orderList.addSource(searchList){
+            orderList.value = it
+        }
     }
 
     fun fetchAllGetOrders(){
         viewModelScope.launch {
             _orderListData.value = SearchDataProvider.getOrderList()
         }
+    }
+
+    fun searchOrder(query:String){
+        searchList.value = SearchDataProvider.searchData(query)
     }
 
 }
