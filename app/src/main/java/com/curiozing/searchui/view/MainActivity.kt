@@ -2,7 +2,10 @@ package com.curiozing.searchui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.activity.viewModels
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,6 +37,19 @@ class MainActivity : AppCompatActivity() {
         binding.rvOrderList.layoutManager = LinearLayoutManager(this)
         binding.rvOrderList.adapter = orderAdapter
 
+        binding.etSearch.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                searchViewModel.searchOrder(s.toString())
+            }
+
+
+        })
 
     }
 
