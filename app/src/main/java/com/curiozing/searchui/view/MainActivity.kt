@@ -45,7 +45,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                searchViewModel.searchOrder(s.toString())
+                if (s?.isNotEmpty() == true){
+                    searchViewModel.searchOrder(s.toString())
+                }else{
+                    searchViewModel.fetchAllGetOrders()
+                }
+
             }
 
 
