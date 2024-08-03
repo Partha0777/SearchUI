@@ -6,13 +6,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.curiozing.searchui.model.OrderModel
 import com.curiozing.searchui.model.SearchDataProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel() {
 
+    var searchInterval= 500L
+
     var orderList : MediatorLiveData<List<OrderModel>> = MediatorLiveData()
     private var searchList = MutableLiveData<List<OrderModel>>()
     private var _orderListData =  MutableLiveData<List<OrderModel>>()
+    var job: Job? = null
 
     init {
        orderList.addSource(_orderListData){
@@ -31,7 +39,11 @@ class SearchViewModel : ViewModel() {
     }
 
     fun searchOrder(query:String){
-        searchList.value = SearchDataProvider.searchData(query)
+        job?.cancel()
+        job = CoroutineScope(Dispatchers.IO).launch {
+            delay(searchInterval)
+            searchList.postValue(SearchDataProvider.searchData(query))
+        }
     }
 
 }
